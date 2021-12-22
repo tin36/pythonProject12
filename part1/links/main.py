@@ -27,9 +27,34 @@
 # - абзац cо ссылкой на страницу "/"" и текстом "Вернуться на главную"
 #
 from flask import Flask
-app = # TODO инициализируйте приложение фласк здесь
+app = Flask(__name__)
 
-# TODO напишите view-функции здесь
+@app.route("/")
+def page_index():
+   return ('<h1>Главная страница</h1>'
+           '<p><a href="/students/">Наши студенты</a></p>'
+           '<p><a href="/courses/">Наши курсы</a></p>')
+
+@app.route("/courses/")
+def page_catalog():
+   return ('<h1>Наши курсы</h1>'
+           '<ul>'
+             '<li>Статистика</li>'
+             '<li>Мехатроника</li>'
+             '<li>Аналитика данных</li>'
+           '</ul>'
+           '<p><a href="/">Вернуться на главную</a></p>')
+
+
+@app.route("/students/")
+def page_settings():
+   return ('<h1>Наши студенты</h1>'
+           '<ul>'
+             '<li>Чаурина Луиза</li>'
+             '<li>Доценко Ефросинья</li>'
+             '<li>Ичёткин Епифан</li>'
+           '</ul>'
+           '<p><a href="/">Вернуться на главную</a></p>')
 
 if __name__=="__main__":
     app.run()

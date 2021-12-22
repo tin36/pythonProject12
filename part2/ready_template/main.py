@@ -13,8 +13,9 @@ variables = {
 
 @app.route('/sign-in/')
 def sign_in():
-    # TODO напишите view-функцию здесь
-    pass
+    return f'Имя - {variables["username"]}<br>' \
+           f'Телефон - {variables["phone"]}<br>' \
+           f'Город - {variables["location"]}<br>'
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True, port=1001)

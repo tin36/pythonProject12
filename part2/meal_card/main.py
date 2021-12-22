@@ -2,7 +2,8 @@
 # ресторана и шаблон index.html. 
 # Измените шаблон так, чтобы он принимал переменные cловаря meal,
 # а также напишите view-функцию чтобы передать переменные в шаблон
-from flask import Flask
+from flask import Flask, render_template
+
 app = Flask(__name__)
 
 
@@ -13,10 +14,9 @@ meal = {
  }
 
 
-@app.route('/meal/')
+@app.route('/')
 def sign_in():
-    # TODO напишите view-функцию здесь
-    pass
+    return render_template("index.html", **meal)
 
 if __name__=="__main__":
     app.run()

@@ -24,7 +24,7 @@
 # 
 
 from flask import Flask, request
-app = # TODO инициализируйте приложение здесь
+app = Flask(__name__)
 
 locations = [
     "Москва",
@@ -52,7 +52,28 @@ locations = [
 
 
 # TODO напишите view-функцию здесь
+@app.route('/')
+def main():
+    return 'главная'
+
+
+@app.route("/search/")
+def get_cities():
+    s = request.args.get("s")
+    if s is None:
+        return "Введите параметр city"
+    s = s.lower()
+    locl = []
+    for i in locations:
+        if s in i.lower():
+            locl.append(i)
+
+    if len(locl)>0:
+        return ", ".join(locl)
+    if len(locl) <1:
+        return "Городов не найдено"
+
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, port=5005)

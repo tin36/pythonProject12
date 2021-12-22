@@ -15,11 +15,33 @@
 # 4. 127.0.0.1:5000/avg/
 #    рассчитать и отобразить среднее значение списка
 #
-app = # TODO инициализируйте фласк-приложение здесь
+from statistics import mean
+
+from flask import Flask
+app = Flask(__name__)
+
 
 expenses = [1240, 60, 230, 20, 310]
 
-# TODO напишите view-функции здесь
+@app.route('/')
+def all_():
+    return ('<p><a href="/all/">Вернуться на all</a></p>'
+            '<p><a href="/avg/">Вернуться на max</a></p>')
+@app.route("/all/")
+def page_all():
+   return " ".join([str(element) for element in expenses])
+
+@app.route("/max/")
+def page_max():
+   return str(max(expenses))
+
+@app.route("/min/")
+def page_min():
+   return str(min(expenses))
+
+@app.route("/avg/")
+def page_avg():
+   return str(mean(expenses))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, port=5002)

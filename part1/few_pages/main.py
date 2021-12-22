@@ -17,24 +17,22 @@
 #      тестироваться будет только текст.
 from flask import Flask
 app = Flask(__name__)
-# TODO напишите view-функции здесь
 
-if __name__ == "__main__":
 
-    @app.route('/')
-    def main():
-        return f'Это главная страница'
+@app.route("/")
+def main():
+    return f'Это главная страница'
 
-    @app.route('/feed/')
-    def main():
+@app.route("/feed/")
+def feed():
         return f'Это страница ленты'
 
-    @app.route('/feedback/')
-    def main():
-        return f'Тут вы можете оставить обратную связь'
+@app.route("/feedback/")
+def feedback():
+    return f'Тут вы можете оставить обратную связь'
 
 
-    @app.route('/feedback/')
-    def main():
-        return f'А это информация про пользователя'
-    app.run()
+@app.route("/profile/")
+def profile():
+    return f'А это информация про пользователя'
+app.run()
